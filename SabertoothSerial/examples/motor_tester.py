@@ -38,6 +38,7 @@
 import contextlib
 import select
 import sys
+import time
 
 import termios
 
@@ -119,18 +120,7 @@ def looper():
             constant_power = max(constant_power - 10, 0)
         else:
             motors.stop()
-        # data = SabertoothMotor()
-        # if direction == "up":
-        # data.motor = 1
-        # data.power = 100
-        # if direction == "down":
-        # data.motor = 1
-        # data.power = -100
-        # if direction == "":
-        # data.motor = 1
-        # data.power = 0
-        # rospy.loginfo("sending command")
-        # pub.publish(data)
+        time.sleep(.15)
 
 
 init()

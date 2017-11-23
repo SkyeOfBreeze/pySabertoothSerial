@@ -41,7 +41,7 @@ import sys
 
 import termios
 
-from src.SabertoothDriverSimple import SerialMotorControl
+from ..src.SabertoothDriverSimple import SerialMotorControl
 
 motors = SerialMotorControl()
 
@@ -52,6 +52,11 @@ def init():
         # Immediately switches to this if not publishing data, and will crash if port does not exist
         motors.set_serial_port(
             '/dev/ttyUSB0')
+        motors.stop()
+        try:
+            looper()
+        except KeyboardInterrupt:
+            pass
         motors.stop()
 
 

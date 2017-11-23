@@ -47,6 +47,7 @@ class SerialMotorControl:
     def __init__(self, port):
         self.serialPort = port
         self.ard = serial.Serial(port, 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
+        self.ard.writeTimeout = 1
         self.stop()
 
     @staticmethod

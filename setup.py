@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='python-sabertooth-serial',
     version='2.7',
-    packages=['examples'],
+    packages=['SabertoothSerial', 'SabertoothSerial.examples'],
     url='http://btelman.org',
     license='BSD 2-Clause',
     author='Brendon Telman',

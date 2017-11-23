@@ -35,11 +35,13 @@
 
 # Simple motor tester demo for the Sabertooth Simple Serial Mode
 
-import sys
-import select
-import termios
 import contextlib
-from SabertoothDriverSimple import SerialMotorControl
+import select
+import sys
+
+import termios
+
+from src.SabertoothDriverSimple import SerialMotorControl
 
 motors = SerialMotorControl()
 

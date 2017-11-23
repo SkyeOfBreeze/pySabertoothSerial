@@ -40,15 +40,23 @@ import serial
 
 class SerialMotorControl:
     serialPort = '/dev/ttyUSB0'
+    failure = False
     # Setup usb serial communication. If you have multiple usb serial devices, this may need to be changed.
     # This cannot detect which one is the SaberTooth
     ard = 0
 
     def __init__(self, port):
         self.serialPort = port
-        self.ard = serial.Serial(port, 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
-        self.ard.writeTimeout = 1
-        self.stop()
+        self.reset()
+
+    def reset(self):
+        try:
+            self.ard = serial.Serial(self.serialPort, 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
+            self.ard.writeTimeout = 1
+            self.stop()
+        except serial.SerialException:
+            self.failure = True
+            pass
 
     @staticmethod
     def constrain(val, min_val, max_val):
@@ -78,7 +86,16 @@ class SerialMotorControl:
         self.motor_raw(data)
 
     def motor_raw(self, data):
-        self.ard.write(chr(data))
+        try:
+            if not self.ard == 0:
+                self.ard.write(chr(data))
+                self.failure = False
+            else:
+                self.failure = True
+        except serial.SerialException:
+            self.failure = True
+        if self.failure:
+            self.reset()
 
     def drive_both(self, left_power, right_power):
         self.motor_raw_simple(0, left_power)

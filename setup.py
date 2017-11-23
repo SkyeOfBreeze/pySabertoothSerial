@@ -8,5 +8,5 @@ setup(
     license='BSD 2-Clause',
     author='Brendon Telman',
     author_email='brendon[at]btelman.org',
-    description='Serial motor driver for SynRen/Sabertooth Motor Controllers via RS-232'
+    description='Serial motor driver for SynRen/Sabertooth Motor Controllers via RS-232', requires=['serial']
 )

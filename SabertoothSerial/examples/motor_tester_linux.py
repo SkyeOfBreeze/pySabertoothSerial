@@ -34,6 +34,18 @@
 # Revision $Id$
 
 # Simple motor tester demo for the Sabertooth Simple Serial Mode
+# This mode can get really laggy fast, as the buffer appears to build up
+# TODO replace with more stable keyboard movement program
+
+# How to control (speed starts at zero!)
+# w - forward
+# s - backward
+# a - point turn left
+# d - point turn right
+# q - one wheel only turn left
+# e - one wheel only turn right
+# f - increase speed
+# v - decrease speed
 
 import contextlib
 import select
@@ -44,15 +56,13 @@ import termios
 
 from SabertoothSerial.SabertoothDriverSimple import SerialMotorControl
 
-motors = SerialMotorControl()
+motors = SerialMotorControl('/dev/ttyUSB0')
 
 
 def init():
     if __name__ == '__main__':
         # example of setting custom serial port. Defaults to /dev/ttyUSB0.
         # Immediately switches to this if not publishing data, and will crash if port does not exist
-        motors.set_serial_port(
-            '/dev/ttyUSB0')
         motors.stop()
         try:
             looper()
@@ -121,6 +131,5 @@ def looper():
         else:
             motors.stop()
         time.sleep(.15)
-
 
 init()

@@ -44,17 +44,14 @@ class SerialMotorControl:
     # This cannot detect which one is the SaberTooth
     ard = 0
 
-    def __init__(self):
-        self.ard = serial.Serial(self.serialPort, 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
+    def __init__(self, port):
+        self.serialPort = port
+        self.ard = serial.Serial(port, 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
+        self.stop()
 
     @staticmethod
     def constrain(val, min_val, max_val):
         return min(max_val, max(min_val, val))
-
-    # set serial port. if this is not done, it assumes '/dev/ttyUSB0', or may not even work at all
-    def set_serial_port(self, port):
-        self.serialPort = port
-        self.stop()
 
     def get_byte_of_motor(self, motor, power):
         power = self.constrain(power, -127, 127)

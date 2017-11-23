@@ -41,7 +41,7 @@ import sys
 
 import termios
 
-from ..src.SabertoothDriverSimple import SerialMotorControl
+from SabertoothSerial.SabertoothDriverSimple import SerialMotorControl
 
 motors = SerialMotorControl()
 

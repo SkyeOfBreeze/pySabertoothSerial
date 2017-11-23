@@ -2,7 +2,7 @@
 Unofficial python library for Synren/Sabertooth serial motor controllers
 
 # Compatible Sabertooth controllers
-More or all that support serial may be compatible, but the list below shows what they are tested on. Feel free to notify me of other working devices
+More or all that support serial may be compatible, but the list below shows what they are tested on. Feel free to notify me of other working devices by making a pull request to this file
 
 - Sabertooth 2x25
 
